@@ -34,5 +34,18 @@ router.get('/nota/:id', async(req, res) =>{
     }
 });
 
+// Get con todos los documentos
+router.get('/notas', async(req, res) =>{
+    try {
+        const notaDB = await Nota.find();
+        res.json(notaDB)
+    } catch (error) {
+        return res.status(400).json({
+            mensaje: 'Ocurrio un error',
+            error
+        })
+    }
+});
+
 // Exportacion de router
 module.exports = router;
