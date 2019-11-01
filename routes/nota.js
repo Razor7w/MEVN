@@ -47,5 +47,27 @@ router.get('/notas', async(req, res) =>{
     }
 });
 
+// Delete Eliminar una nota
+router.delete('/nota/:id', async(req, res) => {
+    const _id = req.params.id;
+
+    try {
+        const notaDB = await Nota.findByIdAndDelete({_id});
+
+        if(!notaDB){
+            return res.json({
+                mensaje: 'No se encontró el id indicado',
+                error
+            })
+        }
+        res.json(notaDB);
+    } catch (error) {
+        return res.status(400).json({
+            mensaje: 'Ocurrio un error',
+            error
+        })
+    }
+});
+
 // Exportacion de router
 module.exports = router;
