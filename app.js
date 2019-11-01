@@ -28,13 +28,14 @@ app.use(express.urlencoded({ extended: true }));
 //app.get('/', (req, res) => {
 //  res.send('Hello World!');
 //});
+app.use('/api', require('./routes/nota'));
 
 // Middleware para Vue.js router modo history
 const history = require('connect-history-api-fallback');
 app.use(history());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.set('puerto', process.env.PORT || 3000);
+app.set('puerto', process.env.PORT || 4000);
 app.listen(app.get('puerto'), () => {
   console.log('Example app listening on port: '+ app.get('puerto'));
 });
