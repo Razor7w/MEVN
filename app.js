@@ -4,7 +4,19 @@ import cors from 'cors';
 import path from 'path';
 
 const app = express();
-
+// Conexion a DB
+import mongoose from 'mongoose';
+const uri = 'mongodb://localhost:27017/mevn';
+const options = {
+  useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true
+}
+// with promises
+mongoose.connect(uri, options).then(
+  () => {
+    console.log("Conectado a mongoDB");
+  },
+  err => { err }
+);
 // Middleware
 app.use(morgan('tiny'));
 app.use(cors());
