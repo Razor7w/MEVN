@@ -69,5 +69,21 @@ router.delete('/nota/:id', async(req, res) => {
     }
 });
 
+// Put actualizar una nota
+router.put('/nota/:id', async(req, res) =>{
+    const _id = req.params.id;
+    const body = req.body;
+
+    try {
+        const notaDB = await Nota.findByIdAndUpdate(_id, body, {new: true});
+        res.json(notaDB);
+    } catch (error) {
+        return res.status(400).json({
+            mensaje: 'Ocurrio un error',
+            error
+        })
+    }
+});
+
 // Exportacion de router
 module.exports = router;
