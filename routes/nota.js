@@ -75,7 +75,7 @@ router.put('/nota/:id', async(req, res) =>{
     const body = req.body;
 
     try {
-        const notaDB = await Nota.findByIdAndUpdate(_id, body, {new: true});
+        const notaDB = await Nota.findOneAndUpdate(_id, body, {useFindAndModify: false, new: true});
         res.json(notaDB);
     } catch (error) {
         return res.status(400).json({
